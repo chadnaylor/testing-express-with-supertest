@@ -26,7 +26,7 @@ describe("Appearances Endpoint", function () {
         request.get('/api/v1/appearances')
             .expect(200)
             .end(function (err, res) {
-                console.log(res.body)
+                //console.log(res.body)
                 if (err) return done(err)
                 expect(res.body.length).toEqual(4)
                 done();
@@ -37,10 +37,22 @@ describe("Appearances Endpoint", function () {
         request.get('/api/v1/appearances')
             .expect(200)
             .end(function (err, res) {
-                console.log(res.body)
+                //console.log(res.body)
                 if (err) return done(err)
                 expect(res.body[0].title).toBeDefined()
                 expect(res.body[0].release_year).toBeDefined()
+                done();
+            });
+    });
+
+    it("returns data with actor's name and dob", function (done) {
+        request.get('/api/v1/appearances')
+            .expect(200)
+            .end(function (err, res) {
+                //console.log(res.body)
+                if (err) return done(err)
+                expect(res.body[0].name).toBeDefined()
+                expect(res.body[0].dob).toBeDefined()
                 done();
             });
     });
