@@ -42,7 +42,6 @@ describe("Appearances Endpoint", function () {
                 for (let appearance of res.body) {
                     expect(appearance.title).toBeDefined()
                     expect(appearance.release_year).toBeDefined()
-
                 }
                 done();
             });
@@ -58,7 +57,21 @@ describe("Appearances Endpoint", function () {
                     expect(appearance.name).toBeDefined()
                     expect(appearance.dob).toBeDefined()
                 }
+                done();
+            });
+    });
 
+    it("removes ids from the data", function (done) {
+        request.get('/api/v1/appearances')
+            .expect(200)
+            .end(function (err, res) {
+                //console.log(res.body)
+                if (err) return done(err)
+                for (let appearance of res.body) {
+                    expect(appearance.id).toBeUndefined()
+                    expect(appearance.movie_id).toBeUndefined()
+                    expect(appearance.actor_id).toBeUndefined()
+                }
                 done();
             });
     });
