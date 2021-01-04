@@ -39,8 +39,11 @@ describe("Appearances Endpoint", function () {
             .end(function (err, res) {
                 //console.log(res.body)
                 if (err) return done(err)
-                expect(res.body[0].title).toBeDefined()
-                expect(res.body[0].release_year).toBeDefined()
+                for (let appearance of res.body) {
+                    expect(appearance.title).toBeDefined()
+                    expect(appearance.release_year).toBeDefined()
+
+                }
                 done();
             });
     });
@@ -51,8 +54,11 @@ describe("Appearances Endpoint", function () {
             .end(function (err, res) {
                 //console.log(res.body)
                 if (err) return done(err)
-                expect(res.body[0].name).toBeDefined()
-                expect(res.body[0].dob).toBeDefined()
+                for (let appearance of res.body) {
+                    expect(appearance.name).toBeDefined()
+                    expect(appearance.dob).toBeDefined()
+                }
+
                 done();
             });
     });
